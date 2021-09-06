@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bastianbalthasarbux
+  labels:
+    app: bastianbalthasarbux
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bastianbalthasarbux
+  template:
+    metadata:
+      labels:
+        app: bastianbalthasarbux
+    spec:
+      containers:
+      - name: bastianbalthasarbux
+        image: sogetipp.azurecr.io/bastianbalthasarbux:0.1.0
+        ports:
+          - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bastianbalthasarbux
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+  selector:
+    app: bastianbalthasarbux
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: karlkonradkoreander
+  labels:
+    app: karlkonradkoreander
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: karlkonradkoreander
+  template:
+    metadata:
+      labels:
+        app: karlkonradkoreander
+    spec:
+      containers:
+      - name: karlkonradkoreander
+        image: sogetipp.azurecr.io/karlkonradkoreander:0.1.0
+        ports:
+          - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: karlkonradkoreander
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+  selector:
+    app: karlkonradkoreander

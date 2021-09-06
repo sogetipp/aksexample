@@ -1,0 +1,64 @@
+█████ AZ COMMANDS █████
+
+LOGS IN TO AZURE
+	az login
+
+SHOWS ACTIVE SUBSCRIPTION
+	az account show
+
+SHOWS AVAILABLE SUBSCRIPTIONS
+	az account list --out table
+
+SETS ACTIVE SUBSCRIPTION
+	az account set --subscription
+
+CREATES A GROUP FOR CONTAINER REGISTRY
+	az group create --name rg-acr --location westeurope
+
+CREATES A CONTAINER REGISTRY
+	az acr create --name sogetipp --resource-group rg-acr --sku Standard
+
+LOGS IN TO CONTAINER REGISTRY
+	az acr login --name sogetipp
+
+CREATES A GROUP FOR AKS
+	az group create --name rg-akstest --location westeurope
+
+CREATES AN AKS CLUSTER
+	az aks create --name aks-neverending --resource-group rg-akstest --node-count 1 --attach-acr sogetipp --enable-addons monitoring --generate-ssh-keys
+
+CONNECTS TO AN AKS CLUSTER
+	az aks get-credentials --name aks-neverending --resource-group rg-akstest --overwrite
+	
+
+
+█████ DOCKER COMMANDS █████
+
+BUILDS AND CREATES A DOCKER CONTAINER IMAGE
+	docker build -t atreyu:0.1.0 .
+	
+TAGS A DOCKER CONTAINER IMAGE BEFORE UPLOADING IT TO ACR
+	docker tag atreyu:0.1.0 sogetipp.azurecr.io/atreyu:0.1.0
+	
+LOGS IN TO ACR
+	docker login denczhsogeti.azurecr.io
+
+PUSHES A DOCKER CONTAINER IMAGE TO ACR
+	docker push sogetipp.azurecr.io/atreyu:0.1.0
+	
+	
+	
+	
+█████ KUBERNETES COMMANDS █████
+
+APPLIES A CONFIGURATION FILE TO A CLUSTER
+	kubectl apply -f aks-deployment.yaml
+
+GETS SERVICES EXPOSED BY THE CLUSTER
+	kubectl get services
+
+GETS PODS AND THEIR STATUS
+	kubectl get pods
+
+GETS PODS AND THEIR RESOURCES USAGE SNAPSHOT
+	kubectl top pods
