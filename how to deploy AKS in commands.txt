@@ -35,16 +35,16 @@ CONNECTS TO AN AKS CLUSTER
 █████ DOCKER COMMANDS █████
 
 BUILDS AND CREATES A DOCKER CONTAINER IMAGE
-	docker build -t atreyu:0.1.0 .
+	docker build -t bastianbalthasarbux:0.1.0 .
 	
 TAGS A DOCKER CONTAINER IMAGE BEFORE UPLOADING IT TO ACR
-	docker tag atreyu:0.1.0 sogetipp.azurecr.io/atreyu:0.1.0
+	docker tag bastianbalthasarbux:0.1.0 sogetipp.azurecr.io/bastianbalthasarbux:0.1.0
 	
 LOGS IN TO ACR
-	docker login denczhsogeti.azurecr.io
+	docker login sogetipp.azurecr.io
 
 PUSHES A DOCKER CONTAINER IMAGE TO ACR
-	docker push sogetipp.azurecr.io/atreyu:0.1.0
+	docker push sogetipp.azurecr.io/bastianbalthasarbux:0.1.0
 	
 	
 	
